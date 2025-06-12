@@ -9,20 +9,24 @@ const lightbox = new SimpleLightbox('.gallery a');
  * @param {Array} images
  */
 export function createGallery(images) {
-  const markup = images.map(img => `
+  const markup = images
+    .map(
+      img => `
     <li class="photo-card">
       <a href="${img.largeImageURL}">
-        <div class="thumb">
+        <div class="gallery-image">
           <img src="${img.webformatURL}" alt="${img.tags}" loading="lazy" />
         </div>
         <div class="info">
-          <p><b>Likes</b> ${img.likes}</p>
-          <p><b>Views</b> ${img.views}</p>
-          <p><b>Comments</b> ${img.comments}</p>
-          <p><b>Downloads</b> ${img.downloads}</p>
+          <p class="info-card"><b>Likes</b> ${img.likes}</p>
+          <p class="info-card"><b>Views</b> ${img.views}</p>
+          <p class="info-card"><b>Comments</b> ${img.comments}</p>
+          <p class="info-card"><b>Downloads</b> ${img.downloads}</p>
         </div>
       </a>
-    </li>`).join('');
+    </li>`
+    )
+    .join('');
 
   galleryContainer.insertAdjacentHTML('beforeend', markup);
   lightbox.refresh();
